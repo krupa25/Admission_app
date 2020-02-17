@@ -1,0 +1,52 @@
+<html>
+    <head><h1>Admission form</h1></head>
+    <body>
+        <form action="/registerUser/" method="POST">
+            {%csrf_token%}
+            <div class="container">
+                <label for="name"><b>Name:</b><br></label>
+                <input type="text" placeholder="Enter your name" name="name" required><br><br>
+                <label for="email"><b>Email:</b><br></label>
+                <input type="text" placeholder="Enter your Email ID" name="email" required><br><br>
+                <label for="address"><b>Address:</b><br></label>
+                <textarea rows="10" name="address">
+                </textarea><br><br>
+                <label for="gender"><b>Gender:</b></label><br>
+                <input type="radio" id="male" name="gender" value="male">
+                <label for="male">Male</label><br>
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="female">Female</label><br>
+                <input type="radio" id="other" name="gender" value="other">
+                <label for="other">Other</label><br><br>
+                <label for="hobbies"><b>Hobbies:</b></label><br>
+                <input type="checkbox" name="hobbies[]" id="cricket" value="cricket">
+                <label for="Cricket">Cricket<br></label>
+                <input type="checkbox" id="football" name="hobbies[]" value="football">
+                <label for="football">Football<br></label>
+                <input type="checkbox" id="hockey" name="hobbies[]" value="hockey">
+                <label for="hockey">Hockey<br></label><br>
+                <label for="cities"><b>City:</b></label>
+                <select id="cities" name="cities">
+                <option value="mumbai">Mumbai</option>
+                <option value="delhi">Delhi</option>
+                <option value="pune">Pune</option>
+                </select><br><br>
+                <label for="birthday"><b>Birthday:</b></label>
+                <input type="date" id="birthday" value="birthday" name="birthday"><br><br>
+                <label for="psw"><b>Password:</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" required><br><br>
+
+                <label for="psw-repeat"><b>Repeat Password:</b></label>
+                <input type="password" placeholder="Repeat Password" name="psw-repeat" required><br><br>
+                <button type="submit" class="registerbtn">Register</button>
+                
+
+
+
+
+            </div>
+
+        </form>
+
+    </body>
+</html>

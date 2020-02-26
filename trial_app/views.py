@@ -2,6 +2,9 @@ from django.shortcuts import render,redirect
 from trial_app.models import Users
 # Create your views here.
 from django.http import HttpResponse
+import json
+
+
 def admission(request):
     return render(request,'home.html')
 
@@ -66,3 +69,14 @@ def updateUser(request,id):
     user.save()
     response = HttpResponse("Success")
     return redirect("/readUsers")
+
+def changeStudentStatus(request, student_id, student_status):
+    data = Users.objects.get(id=student_id)
+    data.status = student_status
+    data.save()
+    print("Successfully updated")
+    return redirect("/readUsers")
+
+
+def wineTemplate(request):
+    return render(request, "wine.html")

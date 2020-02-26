@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from trial_app import views
+from trial_app import wine
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,6 +25,9 @@ urlpatterns = [
     path('readUsers/',views.readUsers),
     path('delete/<id>',views.deleteUsers),
     path('edit/<id>',views.editUsers) ,
-    path('updateUser/<id>',views.updateUser)   
+    path('updateUser/<id>',views.updateUser),
+    path('wineTemplate',views.wineTemplate),
+    path('winePrediction/',wine.winePrediction),
+    path('changeStudentStatus/<student_id>/<student_status>',views.changeStudentStatus) 
 
 ]

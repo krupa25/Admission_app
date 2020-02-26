@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
     <table>
@@ -37,11 +45,17 @@
                 <th>
                     Action
                 </th>
+                <th>
+                    Status
+                </th>
             </tr>
 
         </thead>
         <tbody>
             {%for user in data%}
+            {% csrf_token %}
+
+
             <tr>
                 <td>
                     {{user.name}}
@@ -76,10 +90,39 @@
                         Delete
                     </a>
                 </td>
+                <td>
+                    <label for="Status">Status</label>
+                    <select class="stu_stat status{{user.id}}" name="status" id={{ user.id }}>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                </td>
 
             </tr>
             {%endfor%}
         </tbody>
     </table>
+    <script type="text/javascript">
+    $(function(){
+        $(".stu_stat").on("change",function(){
+            
+            student_id = $(this)[0].id
+            student_status = $(".status"+student_id).val() 
+            $.ajax({
+                url:"/changeStudentStatus/"+student_id+"/"+student_status,
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                type:"json",
+                method:"GET",
+                success:function(obj){
+                    alert("success")
+                },
+                error:function(obj){
+                    alert("error")
+                }
+            })
+        })
+    })
+   
+    </script>
 </body>
 </html>

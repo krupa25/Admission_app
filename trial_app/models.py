@@ -11,3 +11,4 @@ class Users(models.Model):
     dob = models.DateField()
     password = models.CharField(max_length=255)
     confirm_password = models.CharField(max_length=255)
+    status = models.CharField(max_length=255)

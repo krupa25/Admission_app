@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <h1>Call Model</h1>
+    <script type="text/javascript">
+        $(function(){
+                wine=[]
+                wine["alcohol"] = 13.48
+                wine["malic_acid"] = 3.45
+                wine["ash"] = 2.70
+                wine["alcalinity_of_ash"] = 25.0
+                wine["magnesium"] = 99.0
+                wine["total_phenols"] = 2.85
+                wine["flavanoids"] = 1.95
+                wine["nonflavanoid_phenols"] = 0.35
+                wine["proanthocyanins"] = 1.75
+                wine["color_intensity"] = 5.000000
+                wine["hue"] = 0.35
+                wine["od315_of_diluted_wines"] = 1.75
+                wine["proline"] = 650.0
+
+
+                csrf_token = "{{ csrf_token }}";
+                console.log(csrf_token)
+                $.ajax({
+                    url:"/winePrediction/",
+                    // csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                    csrfmiddlewaretoken: csrf_token,
+                    type:"json",
+                    method:"POST",
+                    data: {"wine": wine},
+                    success:function(obj){
+                        alert("success")
+                    },
+                    error:function(obj){
+                        alert("error")
+                    }
+                })
+        })
+       
+        </script>
+</body>
+</html>
